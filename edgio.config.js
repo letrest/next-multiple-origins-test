@@ -67,6 +67,25 @@ module.exports = {
         sni_hint_and_strict_san_check: 'edgio-community-ecommerce-api-example-default.layer0-limelight.link',
       },
     },
+    {
+      name: 'example',
+      override_host_header: 'www.example.com',
+      hosts: [
+        {
+          scheme: 'match',
+          location: [
+            {
+              hostname: 'www.example.com',
+            }
+          ]
+        }
+      ],
+      tls_verify: {
+        allow_self_signed_certs: true,
+        use_sni: true,
+        sni_hint_and_strict_san_check: 'www.example.com',
+      },
+    },
   ],
 
   // Options for hosting serverless functions on Edgio

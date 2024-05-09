@@ -2,6 +2,7 @@
 // You should commit this file to source control.
 import { nextRoutes } from '@edgio/next'
 import { Router } from '@edgio/core/router'
+import { edgioRoutes } from '@edgio/core'
 
 export default new Router()
   // NextRoutes automatically adds routes for all Next.js pages and their assets
@@ -19,3 +20,17 @@ export default new Router()
     },
     origin: { set_origin: 'api' },
   })
+  .match(
+    {
+      path: {
+        not: /^(\/|\/about)$/i
+        // not: ["/","/about"]
+      },
+    }, 
+    {
+      origin: { set_origin: 'example' },
+    }
+  )
+  
+
+  
