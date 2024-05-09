@@ -68,14 +68,14 @@ module.exports = {
       },
     },
     {
-      name: 'example',
-      override_host_header: 'www.example.com',
+      name: 'echo',
+      override_host_header: 'echo.free.beeceptor.com',
       hosts: [
         {
           scheme: 'match',
           location: [
             {
-              hostname: 'www.example.com',
+              hostname: 'echo.free.beeceptor.com',
             }
           ]
         }
@@ -83,7 +83,7 @@ module.exports = {
       tls_verify: {
         allow_self_signed_certs: true,
         use_sni: true,
-        sni_hint_and_strict_san_check: 'www.example.com',
+        sni_hint_and_strict_san_check: 'echo.free.beeceptor.com',
       },
     },
   ],

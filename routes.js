@@ -28,7 +28,7 @@ export default new Router()
       },
     }, 
     {
-      origin: { set_origin: 'example' },
+      origin: { set_origin: 'echo' },
     }
   )
   
