@@ -45,7 +45,7 @@ module.exports = {
     // @default true
     // optimizeServerBuild: true
   },
-
+  default_origin_name: "echo",
   // If you need to proxy some URLs to an origin instead of your Next.js app, you can configure the origins here:
   origins: [
     {
@@ -84,6 +84,24 @@ module.exports = {
         allow_self_signed_certs: true,
         use_sni: true,
         sni_hint_and_strict_san_check: 'echo.free.beeceptor.com',
+      },
+    },
+    {
+      name: 'wordpress',
+      override_host_header: 'dev.thriveworks.com',
+      hosts: [
+        {
+          scheme: 'match',
+          location: [
+            {
+              hostname: 'thriveworks-develop.go-vip.net',
+            }
+          ]
+        }
+      ],
+      tls_verify: {
+        allow_self_signed_certs: true,
+        use_sni: false
       },
     },
   ],

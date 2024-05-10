@@ -20,15 +20,30 @@ export default new Router()
     },
     origin: { set_origin: 'api' },
   })
+  .if(
+    // if not in the list of routes that NextJS uses and if the files don't have extensions, then use wordpress as the origin
+    {
+      edgeControlCriteria: {
+        and: [
+          { "!~": [{ request: "path" }, "(?i)^(/|/about)$"] },
+          { "=~": [{ request: "path" }, "^\/[^.]*$"] },
+          // { "=~": [{ "request.path": "extension" }, "^$"] },
+          // { "=~": [{ "request.path": "filename" }, "^$"] },
+          // { "=~": [{ "request.path": "filename" }, "^$"] },
+        ],
+      },
+    },
+    {
+      origin: { set_origin: "wordpress" }
+    }
+  )
+  // WP specific routes
   .match(
     {
-      path: {
-        not: /^(\/|\/about)$/i
-        // not: ["/","/about"]
-      },
-    }, 
+      path: /^\/(_static\/|wp-).*/,
+    },
     {
-      origin: { set_origin: 'echo' },
+    origin: { set_origin: "wordpress" } 
     }
   )
   
